@@ -3,7 +3,7 @@
 @import 'mixins';
 
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 html {
@@ -12,15 +12,14 @@ html {
 }
 
 body {
-    @include font($body-ff, 1.6rem, $body-color, 300, $lh: 1.5);
-    // padding: 50px 0;
+    @include font($body-ff, 1.6rem, $body-color, 300, 1.5);
     background-color: $body-bg;
 }
 
 .container {
     margin: 0 auto;
     max-width: 930px;
-    padding: 15px;   
+    padding: 15px;
 }
 
 header {
@@ -29,97 +28,88 @@ header {
     align-items: center;
     justify-content: center;
     position: relative;
-    .logo{
+    .logo {
         fill: $secondary-color;
         stroke: $secondary-color;
     }
-    
 }
 
-.scroll{
-        @include posA($top: auto);
-        bottom: 40px;
-        fill: $secondary-color;
-        @include tr;
-        @include hover {
-            fill: $body-color;
-        }
-    }
-
 footer {
-    .logo{
+    .logo {
         fill: $body-color;
         stroke: $body-color;
     }
 }
 
-h1{
+h1 {
     font-size: 5.4rem;
 }
 
-h2{
+h2 {
     font-size: 3.4rem;
 }
 
-h3{
+h3 {
     font-size: 2rem;
 }
 
-a:not([class]){
+a:not([class]) {
     text-decoration: none;
     color: $body-color;
-    border: 1px solid $body-color;
+    border-bottom: 1px solid $body-color;
+    @include  tr;
+    @include hover {
+        border-color: $accent-color;
+        color: $accent-color;
+    }
+}
+
+.scroll {
+    @include posA($top: auto);
+    bottom: 40px;
+    fill: $secondary-color;
     @include tr;
-    @include hover{
-    border-color: $accent-color;
-    color: $accent-color;
+    @include hover {
+        fill: $body-color;
     }
 }
 
 .section {
     text-align: center;
     padding: 115px 0;
-    &--bg{
+    &--bg {
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
         background-color: $primary-color;
         color: $secondary-color;
     }
-    &__title{
+    &__title {
         text-transform: uppercase;
-        letter-spacing: $letter-space;
+        letter-spacing: 0$letter-space;
         line-height: 1.1;
     }
-    &__subtitle{
+    &__subtitle {
         font-weight: 400;
         text-transform: uppercase;
     }
-    &__content{
+    &__content {
         padding: 60px 170px 30px;
         border: $border-width solid $body-color;
         border-top: none;
         position: relative;
         &:before,
-        &:after{
+        &:after {
             content: '';
-            @include posA($top: 0, $left: 0,  $delta_x: 0%, $delta_y: 0%);
+            @include posA($top: 0, $left: 0, $delta_x: 0, $delta_y: 0);
             width: 27%;
             border-top: $border-width solid $body-color;
         }
-        &:after{
+        &:after {
             left: auto;
             right: 0;
         }
     }
-    &--bg &__content{
-        border-color: $secondary-color;
-        &:before,
-        &:after{
-            border-color: $secondary-color;
-        }
-    }
-
     &__content &__title {
         position: absolute;
         @include posA($top: 0);
@@ -128,24 +118,29 @@ a:not([class]){
         overflow: hidden;
         max-width: 44%;
     }
+    &--bg &__content {
+        border-color: $secondary-color;
+        &:before,
+        &:after {
+            border-color: $secondary-color;
+        }
+    }
 }
 
-
-.feature{
-    font-size: 1.4rem;
+.feature {
     text-align: center;
     margin: 50px 0;
     & + & {
         margin-top: 100px;
     }
-    &__title{
+    &__title {
         text-transform: uppercase;
         letter-spacing: $letter-space;
         margin: 35px 0;
     }
 }
 
-.btn{
+.btn {
     display: inline-block;
     background-color: $body-color;
     color: $secondary-color;
@@ -153,26 +148,28 @@ a:not([class]){
     text-decoration: none;
     letter-spacing: $letter-space;
     padding: 20px 140px;
-    // min-width: 70%;
     margin: 30px auto;
     font-weight: 400;
     border: $border-width solid $body-color;
     @include tr;
-    @include hover{
+    @include hover {
         background-color: $secondary-color;
         color: $body-color;
     }
 }
 
-.copyright{
+.copyright {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 60px;
-    .logo{
+    .logo {
         margin-right: 20px;
     }
 }
+
+
+$gap: 10px;
 
 .works {
     display: grid;
@@ -182,48 +179,40 @@ a:not([class]){
     grid-auto-flow: dense;
 }
 
-$gap: 10px;
-
-.work{
+.work {
     background-color: $primary-color;
-    // grid-column: 1/3;
-    // grid-row: 1/3;
-    height: 235px;
     position: relative;
     overflow: hidden;
-    &__img{
+    height: 235px;
+    &__img {
         min-width: 100%;
         min-height: 100%;
         @include posA;
         @include tr;
     }
-    &__name{
+    &__name {
         color: $secondary-color;
         font-size: 3.4rem;
-        
-        @include posA($top:auto, $left:40px, $delta_x:0, $delta_y:0);
-        bottom: 40px;
-        left: 40px;
+        @include posA($top: auto, $left: 40px, $delta_x: 0, $delta_y: 0);
+        bottom: 30px;
+        right: 40px;
         max-height: 150px;
+        overflow: hidden;
         word-break: break-all;
         text-transform: uppercase;
-        overflow: hidden;
         letter-spacing: $letter-space;
-
-    }
-    @include hover{
-        .work__img{
+    } 
+    @include hover {
+        .work__img {
             @include tr;
             transform: translate(-50%, -50%) scale(1.2);
         }
     }
-
-    &--wide{
+    &--wide {
         grid-column: span 2;
-    }
-    &--tall{
+    } 
+    &--tall {
         grid-row: span 2;
         height: 235px * 2 + $gap;
     }
 }
-
